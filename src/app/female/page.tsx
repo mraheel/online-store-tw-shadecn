@@ -20,7 +20,6 @@ export default async function Home() {
 
     return (
         <div className="mx-32 my-16 grid grid-cols-4 grid-rows-4 gap-16 justify-between justify-items-center">
-           
             {allMaleProducts?.map(prod => (
                 <Product key={prod._id} allProduct={ prod } />
             ))}

@@ -42,16 +42,13 @@ const ProdcutDetails = ({ params }: { params: { id: string } }) => {
         fetchData();
         
         
-       },[])
+       },[params.id])
 
 
      if(loading){
         return <Loading />
      } 
-
-     console.log(
-        data.description
-     )
+ 
      return (
         <main className='bg-[#fcfcfc] pb-10'>
             <div className='mx-32'>

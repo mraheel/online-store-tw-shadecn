@@ -3,13 +3,8 @@ import { iProduct } from "@/lib/interfaces"
 import { urlFor } from '../../../sanity/lib/client'
 import Link from "next/link"
 
-export const Product:iProduct = ({ allProduct:{
-    _id, 
-    name, 
-    image, 
-    price
-}}) => {
-    
+export const Product = ( props:any ) => {
+    const { _id, name, image, price } = props.allProduct
     return (
         <div>
             <div className="w-64">
