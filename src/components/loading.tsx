@@ -49,7 +49,9 @@ export const Loading = () => {
             </div>
             <div className='flex justify-between'>
               <Button className='px-8'><CgShoppingCart className='mr-2' size={20} />Add to Cart</Button>
-              <p className='text-4xl font-light leading-10'><div className="h-6 w-11/12 rounded-md bg-gray-300 "></div></p>
+              {/* <p className='text-4xl font-light leading-10'> */}
+                <div className="h-6 w-11/12 rounded-md bg-gray-300 "></div>
+              {/* </p> */}
             </div>
           </div>
         </div>
@@ -61,11 +63,11 @@ export const Loading = () => {
           </div>
           <div className='flex justify-center'>
             <h4 className='flex-[1_1_0%] font-bold leading-5 tracking-wider text-[#666]'>PRODUCT DETAILS</h4>
-            <p className='flex-[2_1_0%] leading-7 font-light tracking-widest'>
+            <div className='flex-[2_1_0%] leading-7 font-light tracking-widest'>
               <div className="h-6 w-11/12 rounded-md bg-gray-300 mb-3"></div>
               <div className="h-6 w-11/12 rounded-md bg-gray-300 mb-3"></div>
               <div className="h-6 w-11/12 rounded-md bg-gray-300 mb-3"></div>
-            </p>
+            </div>
           </div>
           <div className='flex justify-center'>
             <h4 className='flex-[1_1_0%] font-bold leading-5 tracking-wider text-[#666]'>PRODUCT CARE</h4>

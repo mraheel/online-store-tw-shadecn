@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
+import FeatureImg from '/public/feature.png'
 
 export const FeatureBanner = () => {
     return (
@@ -34,7 +35,7 @@ export const FeatureBanner = () => {
                     </div>
 
                     <div className='flex gap-8 w-full'>
-                        <Image src={'/feature.png'} width={300} height={350} alt='img' />
+                        <Image src={FeatureImg} width={300} alt='img' />
                         <div className="flex flex-col m-auto">
                             <p className="text-lg font-light text-justify leading-7">This piece is ethically crafted in our small family-owned workshop in Peru with unmatched attention to detail and care. The Natural color is the actual natural color of the fiber, undyed and 100% traceable.</p>
                             <Link href={'/products'}>

@@ -1,12 +1,13 @@
 import Image from "next/image"
 import { Search, ShoppingCart } from "lucide-react"
 import Link from 'next/link'
+import Logo from '/public/Logo.webp'
 
 export const NavBar = () => {
     return (
         <header className="flex mx-32 my-8 items-center justify-between">
             <Link href={'/'}>
-                <Image src={'/Logo.webp'} alt="Site Logo" width={150} height={150} />
+                <Image src={Logo} priority={true} alt="Site Logo" width="150" />
             </Link>
             <nav className="flex items-center justify-center space-x-8">
                 <Link href={'/male'} className="cursor-pointer font-medium">Male</Link>

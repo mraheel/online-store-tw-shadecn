@@ -17,17 +17,17 @@ export const Hero = () => {
 
 
                 <div className='flex flex-row justify-between absolute inset-x-0 bottom-0'>
-                    <Image src={'/Featured1.png'} width={100} height={35} alt='img' />
-                    <Image src={'/Featured2.png'} width={100} height={35} alt='img' />
-                    <Image src={'/Featured3.png'} width={100} height={35} alt='img' />
-                    <Image src={'/Featured4.png'} width={100} height={35} alt='img' />
+                    <img src={'/Featured1.png'} width={100} height={35} alt='img' />
+                    <img src={'/Featured2.png'} width={100} height={35} alt='img' />
+                    <img src={'/Featured3.png'} width={100} height={35} alt='img' />
+                    <img src={'/Featured4.png'} width={100} height={35} alt='img' />
                 </div>
 
             </div>
 
 
             <div className="bg-[#ffece3] w-[600px] rounded-full">
-                <Image className="-top-2" src={'/header.png'} alt="Main Image" width={650} height={650} />
+                <img className="-top-2" src={'/header.png'} alt="Main Image" width={650} height={650} />
             </div>
         </div>
     )

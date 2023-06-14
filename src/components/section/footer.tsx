@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import Logo from '/public/Logo.webp'
+
 import { TiSocialTwitter, TiSocialLinkedin, TiSocialFacebook } from 'react-icons/ti'
 export const Footer = () => {
     return (
@@ -9,7 +11,7 @@ export const Footer = () => {
                 
                 <div className="flex flex-col gap-8 w-96 md:mx-0 mx-auto text-center md:text-left">
                     <Link href={'/'} >
-                        <Image src={'/Logo.webp'} alt="Site Logo" width={180} height={88} />
+                        <Image src={Logo} priority={true} alt="Site Logo" width="180"  />
                     </Link>
                     
                     <p className="mt-2 text-sm text-gray-500">Small, artisan label that offers a thoughtfully curated collection of high quality everyday essentials made.</p>

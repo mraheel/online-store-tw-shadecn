@@ -62,7 +62,7 @@ const ProdcutDetails = ({ params }: { params: { id: string } }) => {
                             <h3 className='text-2xl font-normal leading-8 tracking-wider text-black'>{data.name}</h3>
                             <span className='text-xl font-semibold opacity-30'>{data.type}</span>
                         </div>
-                        <div className=''>
+                        <div>
                             <p className='text-base font-bold basis-4 tracking-wider'>SELECT SIZE</p>
                             <ul className='flex gap-4 mt-4'>
                                 <li className='flex w-10 h-10 justify-center items-center rounded-full cursor-pointer text-base text-black font-bold leading-4 tracking-wider hover:shadow-md'>XS</li>
@@ -94,9 +94,9 @@ const ProdcutDetails = ({ params }: { params: { id: string } }) => {
                     </div>
                     <div className='flex justify-center'>
                         <h4 className='flex-[1_1_0%] font-bold leading-5 tracking-wider text-[#666]'>PRODUCT DETAILS</h4>
-                        <p className='flex-[2_1_0%] leading-7 font-light tracking-widest'>{ 
+                        <div className='flex-[2_1_0%] leading-7 font-light tracking-widest'>  
                             <PortableText value={data.description} />
-                        }</p>
+                         </div>
                     </div>
                     <div className='flex justify-center'>
                         <h4 className='flex-[1_1_0%] font-bold leading-5 tracking-wider text-[#666]'>PRODUCT CARE</h4>
