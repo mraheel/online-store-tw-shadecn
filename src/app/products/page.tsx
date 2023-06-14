@@ -7,8 +7,10 @@ const getAllProducts = async  () => {
     _id,
     name,
     price,
+    image,
+    type,
     description,
-    image
+    materials
   } | order(_createdAt desc)`)
   return data;
 }

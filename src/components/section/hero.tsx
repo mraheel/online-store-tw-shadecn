@@ -1,6 +1,8 @@
 import Image from "next/image"
 import { Button } from "../ui/button"
 import { BsCart2 } from 'react-icons/bs'
+import Link from 'next/link'
+
 export const Hero = () => {
     return (
         <div className="mx-32 grid grid-cols-2 gap-8 mt-16">
@@ -11,9 +13,10 @@ export const Hero = () => {
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">An Industrial Take on Streetwear</h1>
                 <p className="leading-7 [&:not(:first-child)]:mt-6">The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.
                 </p>
-                <Button className="w-2/6 text-lg h-14 mt-2">
-                    <BsCart2 className="mr-2 text-xl" /> Start Shopping
-                </Button>
+                <Link href={'/products'} className="w-2/6 text-lg h-14 mt-2">
+                    <Button><BsCart2 className="mr-2 text-xl" /> Start Shopping</Button>
+                    
+                </Link>
 
 
                 <div className='flex flex-row justify-between absolute inset-x-0 bottom-0'>

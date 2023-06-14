@@ -5,7 +5,7 @@ import { NewsLetter } from "@/components/section/newsletter";
 import { groq } from 'next-sanity'
 
 import { client } from "../../sanity/lib/client"
-import { FeatureProducts } from "@/components/section/FeatureProducts";
+import { RecommendedProducts } from "@/components/section/RecommendedProducts";
 
 // const getProducts = async  () => {
 //   const data = await client.fetch(groq`*[_type=='product']`)
@@ -21,7 +21,7 @@ export default async function  Home() {
    <>
     <Hero />
     <EventBanner />
-    <FeatureProducts />
+    <RecommendedProducts />
     <FeatureBanner />
     <NewsLetter />
    </>
