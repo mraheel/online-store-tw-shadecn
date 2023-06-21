@@ -32,7 +32,7 @@ const CartItemQtyCard:React.FC<Props> = ({_id, qty}) => {
 
     useEffect(()=>{
         dispatch(CartActions.updateCartItemQuantity({_id, quantity:itemQty}))
-    },[itemQty])
+    },[dispatch, _id, itemQty])
       
     return(
         <>

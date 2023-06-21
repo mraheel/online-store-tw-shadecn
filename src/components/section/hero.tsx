@@ -2,6 +2,11 @@ import Image from "next/image"
 import { Button } from "../ui/button"
 import { BsCart2 } from 'react-icons/bs'
 import Link from 'next/link'
+import f1image from '../../../public/Featured1.png'
+import f2image from '../../../public/Featured2.png'
+import f3image from '../../../public/Featured3.png'
+import f4image from '../../../public/Featured4.png'
+
 
 export const Hero = () => {
     return (
@@ -15,22 +20,22 @@ export const Hero = () => {
                 </p>
                 <Link href={'/products'} className="w-2/6 text-lg h-14 mt-2">
                     <Button><BsCart2 className="mr-2 text-xl" /> Start Shopping</Button>
-                    
                 </Link>
 
 
                 <div className='flex flex-row justify-between absolute inset-x-0 bottom-0'>
-                    <img src={'/Featured1.png'} width={100} height={35} alt='img' />
-                    <img src={'/Featured2.png'} width={100} height={35} alt='img' />
-                    <img src={'/Featured3.png'} width={100} height={35} alt='img' />
-                    <img src={'/Featured4.png'} width={100} height={35} alt='img' />
+                    <Image src={f1image} width={100}  alt='img' />
+                    <Image src={f2image} width={100}  alt='img' />
+                    <Image src={f3image} width={100}  alt='img' />
+                    <Image src={f4image} width={100}  alt='img' />
+                    
                 </div>
 
             </div>
 
 
             <div className="bg-[#ffece3] w-[600px] rounded-full">
-                <img className="-top-2" src={'/header.png'} alt="Main Image" width={650} height={650} />
+                <Image className="-top-2" src={'/header.png'} alt="Main Image" width={650} height={650} />
             </div>
         </div>
     )

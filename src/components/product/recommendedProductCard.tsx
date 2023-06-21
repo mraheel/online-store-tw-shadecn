@@ -11,7 +11,7 @@ interface Props{
 export const RecommededProductCard:React.FC<Props> = ({ item }) => {
     return (
         // transition ease-in-out delay-150 hover:scale-105 duration-300
-        <div className='h-full px-1 relative'>
+        <div key={item._id} className='h-full px-1 relative'>
            
             <Image alt="Product Image" src={urlFor(item.image && item.image[0]).width(320).url()} width={320} height={350} />
             <Link href={`/product/${item._id}`}>
