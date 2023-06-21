@@ -11,23 +11,33 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '@/app/home.page.css'
-const getFeaturedProducts = async  () => {
+// const getFeaturedProducts = async  () => {
 
-    const data = await client.fetch(`*[_type=='product' && featured=='yes']{
-      _id,
-      name,
-      price,
-      image,
-      type,
-      description,
-      materials
-    } | order(_createdAt desc) [0..7]`)
-    return data;
-  }
+//     const data = await client.fetch(`*[_type=='product' && featured=='yes']{
+//       _id,
+//       name,
+//       price,
+//       image,
+//       type,
+//       description,
+//       materials
+//     } | order(_createdAt desc) [0..7]`)
+//     return data;
+//   }
 
 export const RecommendedProducts = async () => {
 
-    const feature_items:Product[] = await getFeaturedProducts();
+    const feature_items = await client.fetch(`*[_type=='product' && featured=='yes']{
+        _id,
+        name,
+        price,
+        image,
+        type,
+        description,
+        materials
+      } | order(_createdAt desc) [0..7]`)
+
+    // const feature_items:Product[] = await getFeaturedProducts();
 
     return (
         

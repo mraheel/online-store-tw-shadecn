@@ -1,8 +1,9 @@
 import { EventBanner } from "@/components/section/EventBanner";
 import { FeatureBanner } from "@/components/section/FeatureBanner";
+import {RecommendedProducts} from "@/components/section/RecommendedProducts";
 import { Hero } from "@/components/section/hero";
 import { NewsLetter } from "@/components/section/newsletter";
-import { RecommendedProducts } from "@/components/section/RecommendedProducts";
+
 
 
 
