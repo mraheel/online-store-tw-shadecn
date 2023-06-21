@@ -1,5 +1,4 @@
 'use client'
-import { client } from '../../../sanity/lib/client'
 import { RecommededProductCard } from '../product/recommendedProductCard'
 import { Product } from '@/types/product'
 
@@ -12,36 +11,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '@/app/home.page.css'
 import React from 'react';
-// const getFeaturedProducts = async  () => {
-
-//     const data = await client.fetch(`*[_type=='product' && featured=='yes']{
-//       _id,
-//       name,
-//       price,
-//       image,
-//       type,
-//       description,
-//       materials
-//     } | order(_createdAt desc) [0..7]`)
-//     return data;
-//   }
 
 interface Props{
     items: Product[]
 }
 export const RecommendedProducts:React.FC<Props> =  ( { items }) => {
 
-    // const feature_items:Product[] = await client.fetch(`*[_type=='product' && featured=='yes']{
-    //     _id,
-    //     name,
-    //     price,
-    //     image,
-    //     type,
-    //     description,
-    //     materials
-    //   } | order(_createdAt desc) [0..7]`)
-
-    // const feature_items:Product[] = await getFeaturedProducts();
 
     return (
         
