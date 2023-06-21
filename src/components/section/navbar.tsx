@@ -6,9 +6,27 @@ import Logo from '/public/Logo.webp'
 import { usePathname } from 'next/navigation';
 
 
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+  } from "@/components/ui/hover-card"
+
+import { useSelector } from "react-redux";
+import { TotalCartQuantity, CartProducts } from '@/store'
+import CartHoverCard from "../product/cart/CartHoverCard"
+import { Button } from "../ui/button"
+
 export const NavBar = () => {
-   const pathname = usePathname();
-   
+    const pathname = usePathname();
+    const totalItemsInCart = useSelector(
+        TotalCartQuantity
+    );
+    const products = useSelector(
+        CartProducts
+    );
+
+
     return (
         <header className="flex mx-32 my-8 items-center justify-between">
             <Link href={'/'}>
@@ -26,16 +44,21 @@ export const NavBar = () => {
                 <input className="h-10 mx-2 w-full focus:outline-none" type="search" name="search" placeholder="Search" />
             </div>
 
-            <button className="rounded-full">
-                <span className="absolute top-6 right-23 h-6 w-6 text-center rounded-full bg-[#f02d34] text-white">0</span>
-                <ShoppingCart className="relative" />
-            </button>
             
-            {/* <div className="p-2 rounded-full bg-gray-300">
+                    
+            <HoverCard>
+                <HoverCardTrigger>
                 
-                <ShoppingCart className="relative" />
-                <span className="absolute top-2 right-20 h-6 w-6 text-center rounded-full bg-[#f02d34] text-white">0</span>
-            </div> */}
+                <button>
+                    <span className="relative inline-block text-xs leading-6 top-[12px] -right-[10px] h-6 w-6 z-10 text-center rounded-full bg-[#f02d34] text-white">{ totalItemsInCart }</span>
+                    <ShoppingCart className="relative" />
+                </button>   
+                    
+                </HoverCardTrigger>
+                <HoverCardContent className="w-60">
+                    <CartHoverCard products={ products} />
+                </HoverCardContent>
+            </HoverCard>
         </header>
     )
 }

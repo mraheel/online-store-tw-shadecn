@@ -9,14 +9,18 @@ import { ProdcutDetailImages } from '@/components/ProductDetailsImage'
 import { PortableText } from '@portabletext/react'
 import { iProduct } from '@/lib/interfaces'
 
+import { useDispatch } from "react-redux";
+import { CartActions } from '@/store/slice/cart.slice'
+import { Product } from '@/types/product'
+import { toast } from 'react-hot-toast'
 
 interface Props{
-    product: iProduct
+    product: Product
 }
 
 const ProductDetails: React.FC<Props> = ({ product }) => {
-    const [itemQty, setItemQty] = useState<number>(0);
-
+    
+    const [itemQty, setItemQty] = useState<number>(1);
     const increamentQty  = () => {
         setItemQty(itemQty+1)
     }
@@ -25,6 +29,15 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
        const current_qty = itemQty-1;
        (current_qty < 1)? setItemQty(1): setItemQty(current_qty)
     }
+
+
+    const dispatch = useDispatch()
+    
+    const handleAddItemInCart = (product:Product) => {
+        dispatch(CartActions.addItemToCart({product: product, quantity: itemQty}))
+        toast.success(`${itemQty} x ${product.name} successfully added in cart.`)
+    }
+
     return (
         <>
             <div className='flex justify-center py-16 gap-4'>
@@ -60,7 +73,7 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                        <Button className='px-8'><CgShoppingCart className='mr-2' size={20} />Add to Cart</Button>
+                        <Button onClick={()=>handleAddItemInCart(product)}  className='px-8'><CgShoppingCart className='mr-2' size={20} />Add to Cart</Button>
                         <p className='text-4xl font-light leading-10'>${product.price}</p>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
-import { Product } from "@/components/section/product"
+import { Product } from "@/types/product";
 import { client } from "../../../sanity/lib/client"
-import { iProduct } from "@/lib/interfaces"
-
+import { ProductCard } from "@/components/product/productCard";
 const getAllProducts = async  () => {
   const data = await client.fetch(`*[_type=='product']{
     _id,
@@ -18,12 +17,12 @@ const getAllProducts = async  () => {
 export default async function Home() {
     
    
-    const allProducts:iProduct[] = await getAllProducts();
+    const allProducts:Product[] = await getAllProducts();
 
     return (
         <div className="mx-32 my-16 grid grid-cols-4 grid-rows-4 gap-16 justify-between justify-items-center">
             {allProducts?.map(prod => (
-                <Product key={prod._id} allProduct={ prod } />
+                <ProductCard key={prod._id} item={ prod } />
             ))}
         </div>
     )
