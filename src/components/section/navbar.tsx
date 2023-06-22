@@ -4,7 +4,7 @@ import { Search, ShoppingCart } from "lucide-react"
 import Link from 'next/link'
 import Logo from '/public/Logo.webp'
 import { usePathname } from 'next/navigation';
-
+import { client } from "../../../sanity/lib/client"
 
 import {
     HoverCard,
@@ -13,11 +13,16 @@ import {
   } from "@/components/ui/hover-card"
 
 import { useSelector } from "react-redux";
-import { TotalCartQuantity, CartProducts } from '@/store'
+import { TotalCartQuantity, CartProducts, TotalCartAmount } from '@/store'
 import CartHoverCard from "../product/cart/CartHoverCard"
-import { Button } from "../ui/button"
+import React, { useState } from "react"
+import { Product } from "@/types/product"
+import { urlFor } from "../../../sanity/lib/client"
 
 export const NavBar = () => {
+
+    const [search, setSearch] = useState<Product[]>([])
+
     const pathname = usePathname();
     const totalItemsInCart = useSelector(
         TotalCartQuantity
@@ -26,6 +31,30 @@ export const NavBar = () => {
         CartProducts
     );
 
+    const cartAmount = useSelector(
+        TotalCartAmount
+    );
+
+    
+    const handleOnChange = async (e:React.ChangeEvent<HTMLInputElement>) => {
+       
+       const search_words = e.currentTarget.value
+        if(search_words.length > 3){
+            const data:Product[] = await client.fetch(`*[_type=='product' && name match '${search_words}*']{
+                _id,
+                name,
+                price,
+                image,
+                type,
+                description,
+                materials
+              } | order(_createdAt desc)`)
+
+            setSearch(data)
+        }else{
+            setSearch([])
+        }
+    }
 
     return (
         <header className="flex mx-32 my-8 items-center justify-between">
@@ -39,11 +68,34 @@ export const NavBar = () => {
                 <Link href={'/products'} className={ pathname.startsWith('/products')? 'cursor-pointer font-medium border-solid border-b-4': 'cursor-pointer font-medium hover:border-b-4' }>All Products</Link>
             </nav>
 
+            <div className="relative">
             <div className="flex text-gray-600 border-2 border-gray-300 bg-white rounded-lg w-96">
                 <Search className="m-2" />
-                <input className="h-10 mx-2 w-full focus:outline-none" type="search" name="search" placeholder="Search" />
+                <input autoComplete="off" onChange={handleOnChange} className="h-10 mx-2 w-full focus:outline-none" type="search" placeholder="Search" />
             </div>
-
+            <div className="absolute bg-white z-10 shadow-lg rounded-md">
+                {
+                    search.map((item)=>(
+                        
+                    <div key={item._id} className="flex items-center px-4 my-4"> 
+                        <a href={`/product/${item._id}`}>
+                            <div className="flex w-full">
+                                <div className="">
+                                    <Image className="max-w-none rounded-lg" alt="Product Image" src={urlFor(item.image && item.image[0]).width(50).height(66).url()} width={50} height={66} />
+                                </div>
+                                <div className="flex flex-col ml-4">
+                                    <span className="font-light text-sm">{item.quantity} x { item.name }</span>
+                                    <span className="text-red-500 text-xs">{ item.type }</span>
+                                    <div className="text-sm font-medium">${ Number(item.price).toLocaleString(undefined, {minimumFractionDigits: 2}) }</div>
+                                </div>
+                            </div>  
+                        </a>
+                    </div> 
+                       
+                    ))
+                }
+            </div>
+            </div>
             
                     
             <HoverCard>
@@ -56,7 +108,7 @@ export const NavBar = () => {
                     
                 </HoverCardTrigger>
                 <HoverCardContent className="w-60">
-                    <CartHoverCard products={ products} />
+                    <CartHoverCard products={ products } amount={cartAmount} />
                 </HoverCardContent>
             </HoverCard>
         </header>

@@ -20,7 +20,7 @@ export default async function Home() {
     const allProducts:Product[] = await getAllProducts();
 
     return (
-        <div className="mx-32 my-16 grid grid-cols-4 grid-rows-4 gap-16 justify-between justify-items-center">
+        <div className="mx-32 my-16 grid grid-cols-4 grid-rows-2 gap-16 justify-between justify-items-center">
             {allProducts?.map(prod => (
                 <ProductCard key={prod._id} item={ prod } />
             ))}
