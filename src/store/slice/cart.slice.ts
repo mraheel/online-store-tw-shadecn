@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Cart } from '@/types/cart'
 import { Product } from '@/types/product'
-import { product } from '../../../sanity/product';
 
 
   // Define the initial state using that type
@@ -22,14 +21,8 @@ import { product } from '../../../sanity/product';
             return item._id === newItem._id
           })
        
-          state.totalQuantity += action.payload.quantity
-          
-
           if(!existingItem){
-
             const itPrice = action.payload.quantity * Number(newItem.price)
-            state.totalAmount += itPrice
-
             state.items.push({
               ...newItem,
               quantity: action.payload.quantity,
@@ -43,6 +36,20 @@ import { product } from '../../../sanity/product';
             state.totalAmount += itPrice
           }
 
+          let sum = 0;
+          let itPrice = 0
+          state.items.forEach(element => {
+            sum += element.quantity;
+            itPrice += element.quantity* Number(element.price)
+          });
+          state.totalQuantity = sum
+          state.totalAmount = itPrice
+
+          console.log(
+            state.totalQuantity,
+            state.totalAmount
+          )
+
         },
         clearCart: (state) => {
           // state = initialState
@@ -55,21 +62,20 @@ import { product } from '../../../sanity/product';
           const existingItem = state.items.find((item)=> {
             return item._id === action.payload._id
           })
-
           if(existingItem){
             existingItem.quantity = action.payload.quantity
             existingItem.totalPrice = action.payload.quantity * Number(existingItem.price)
-
-            const itPrice = action.payload.quantity * Number(existingItem.price)
-            state.totalAmount += itPrice
           }
-
+        
 
           let sum = 0;
+          let itPrice = 0
           state.items.forEach(element => {
             sum += element.quantity;
+            itPrice += element.quantity* Number(element.price)
           });
           state.totalQuantity = sum
+          state.totalAmount = itPrice
         },
         deleteItemFromCart: (state, action:PayloadAction<{_id:string}>)=>{
 

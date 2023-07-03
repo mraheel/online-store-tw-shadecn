@@ -15,7 +15,8 @@ const CartItemQtyCard:React.FC<Props> = ({_id, qty}) => {
     const dispatch = useDispatch()
 
     const [ itemQty, setitemQty ] = useState<number>(qty)
-    const [ disableQtyBtn, setDisableQtyBtn ] = useState<boolean>(false)
+    const is_disbale = (qty <= 1)? true: false
+    const [ disableQtyBtn, setDisableQtyBtn ] = useState<boolean>(is_disbale)
 
     const handleUpdateCartItemQuantity =  (id: string, action: string) => {
 
@@ -28,11 +29,12 @@ const CartItemQtyCard:React.FC<Props> = ({_id, qty}) => {
         }else{
             setitemQty((prev:number)=> ++prev)
         } 
+        // dispatch(CartActions.updateCartItemQuantity({_id: id, quantity:itemQty}))
       }
 
     useEffect(()=>{
         dispatch(CartActions.updateCartItemQuantity({_id, quantity:itemQty}))
-    },[dispatch, _id, itemQty])
+    },[_id, itemQty])
       
     return(
         <>

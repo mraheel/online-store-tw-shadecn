@@ -1,7 +1,7 @@
 "use client";
 
 import { BsTrash } from "react-icons/bs";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { AiOutlineShopping } from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,23 +25,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-import { useRouter } from "next/navigation";
-
-
-
+// import { useRouter } from "next/navigation";
+import StripeCheckoutButton from "@/components/product/cart/Checkout";
 
 export default function ShoppingCart() {
-  const { push } = useRouter();
-  const handleCheckout = () => {
-    push('/payment/success')
-  }
-  
 
   const dispath = useDispatch()
   const products = useSelector(CartProducts)
   const cartQty = useSelector(TotalCartQuantity)
   const cartAmount = useSelector(TotalCartAmount)
-
   const handleDeleteItemFromCart = (_id:string) => {
     dispath(CartActions.deleteItemFromCart({_id}))
     toast.success(`Cart Item successfully deleted.`)
@@ -197,9 +189,7 @@ export default function ShoppingCart() {
                     <span>Total cost</span>
                     <span>${cartAmount.toLocaleString(undefined, {minimumFractionDigits:2})}</span>
                   </div>
-                  <Button onClick={()=>handleCheckout()} className="py-3 text-sm text-white uppercase w-full">
-                    Checkout
-                  </Button>
+                  <StripeCheckoutButton products={ products } />
                 </div>
               </div>
             </div>

@@ -4,7 +4,6 @@ import { Search, ShoppingCart } from "lucide-react"
 import Link from 'next/link'
 import Logo from '/public/Logo.webp'
 import { usePathname } from 'next/navigation';
-import { client } from "../../../sanity/lib/client"
 
 import {
     HoverCard,
@@ -18,11 +17,12 @@ import CartHoverCard from "../product/cart/CartHoverCard"
 import React, { useState } from "react"
 import { Product } from "@/types/product"
 import { urlFor } from "../../../sanity/lib/client"
+import { getSearchProducts } from "@/lib/product.utils"
 
 export const NavBar = () => {
 
     const [search, setSearch] = useState<Product[]>([])
-
+    
     const pathname = usePathname();
     const totalItemsInCart = useSelector(
         TotalCartQuantity
@@ -37,19 +37,9 @@ export const NavBar = () => {
 
     
     const handleOnChange = async (e:React.ChangeEvent<HTMLInputElement>) => {
-       
        const search_words = e.currentTarget.value
         if(search_words.length > 3){
-            const data:Product[] = await client.fetch(`*[_type=='product' && name match '${search_words}*']{
-                _id,
-                name,
-                price,
-                image,
-                type,
-                description,
-                materials
-              } | order(_createdAt desc)`)
-
+            const data:Product[] = await getSearchProducts(`${search_words}`)
             setSearch(data)
         }else{
             setSearch([])

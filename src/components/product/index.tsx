@@ -7,7 +7,6 @@ import { CgShoppingCart } from 'react-icons/cg'
 import { Button } from '@/components/ui/button'
 import { ProdcutDetailImages } from '@/components/ProductDetailsImage'
 import { PortableText } from '@portabletext/react'
-import { iProduct } from '@/lib/interfaces'
 
 import { useDispatch } from "react-redux";
 import { CartActions } from '@/store/slice/cart.slice'
