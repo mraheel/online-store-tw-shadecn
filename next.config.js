@@ -13,9 +13,13 @@ const nextConfig = {
           {
             source: '/data/:path*',
             destination: 'https://online-store-blue-seven.vercel.app/:path*',
-          },
+          },{
+            source: '/data/:path*',
+            destination: 'https://v7oyyrqz.api.sanity.io/v2023-05-31/:path*'
+          }
         ]
       },
+      
 }
 
 module.exports = nextConfig

@@ -4,7 +4,6 @@ export const getProducts = async ( type: string) => {
     const groq = (type == "" || type === undefined)? 
         `*[_type=='product']`: 
         `*[_type=='product' && categorySet == '${type}']`
-    console.log(groq)
     const data = await client.fetch(`${groq}{
         _id,
         name,
