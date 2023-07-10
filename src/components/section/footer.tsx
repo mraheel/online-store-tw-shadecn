@@ -36,10 +36,10 @@ export const Footer = () => {
                         <h2 className="title-font font-medium text-gray-900 tracking-widest text-lg mb-3">Company</h2>
                         <nav className="list-none mb-10 hover:cursor-pointer flex flex-col gap-2">
                             <li>
-                                <a className="text-gray-600 hover:text-gray-800">About</a>
+                                <Link href={'about-us'} className="text-gray-600 hover:text-gray-800">About</Link>
                             </li>
                             <li>
-                                <a className="text-gray-600 hover:text-gray-800">Terms of Use</a>
+                                <Link href={'terms-of-use'} className="text-gray-600 hover:text-gray-800">Terms of Use</Link>
                             </li>
                             <li>
                                 <a className="text-gray-600 hover:text-gray-800">Privacy Policy</a>
