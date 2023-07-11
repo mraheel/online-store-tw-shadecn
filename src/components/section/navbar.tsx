@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Logo from '/public/Logo.webp'
 import { usePathname } from 'next/navigation';
 import { VscAccount } from 'react-icons/vsc'
+import { Loader2 } from "lucide-react"
 
 import {
     HoverCard,
@@ -20,11 +21,12 @@ import { Product } from "@/types/product"
 import { urlFor } from "../../../sanity/lib/client"
 import { getSearchProducts } from "@/lib/product.utils"
 import { signOut, useSession } from "next-auth/react"
-import { Button } from "../ui/button"
 
 export const NavBar = () => {
+
     const { data:session } = useSession()
     const [search, setSearch] = useState<Product[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     
     const pathname = usePathname();
     const totalItemsInCart = useSelector(
@@ -40,13 +42,15 @@ export const NavBar = () => {
 
     
     const handleOnChange = async (e:React.ChangeEvent<HTMLInputElement>) => {
-       const search_words = e.currentTarget.value
+        setIsLoading(true)
+        const search_words = e.currentTarget.value
         if(search_words.length > 3){
             const data:Product[] = await getSearchProducts(`${search_words}`)
             setSearch(data)
         }else{
             setSearch([])
         }
+        setIsLoading(false)
     }
 
     return (
@@ -63,15 +67,25 @@ export const NavBar = () => {
 
             <div className="relative">
                 <div className="flex text-gray-600 border-2 border-gray-300 bg-white rounded-lg w-96">
-                    <Search className="m-2" />
+                    {
+                        !isLoading? (
+                            <Search className="m-2" />
+                        ): (
+                            <Loader2 className="m-2 animate-spin" /> 
+                        )
+
+                    }
+                    
+                    
                     <input autoComplete="off" onChange={handleOnChange} className="h-10 mx-2 w-full focus:outline-none" type="search" placeholder="Search" />
+                    
                 </div>
                 <div className="absolute bg-white z-10 shadow-lg rounded-md">
                     {
                         search.map((item)=>(
                             
                         <div key={item._id} className="flex items-center px-4 my-4"> 
-                            <a href={`/product/${item._id}`}>
+                            <Link href={`/product/${item._id}`}>
                                 <div className="flex w-full">
                                     <div className="">
                                         <Image className="max-w-none rounded-lg" alt="Product Image" src={urlFor(item.image && item.image[0]).width(50).height(66).url()} width={50} height={66} />
@@ -82,7 +96,7 @@ export const NavBar = () => {
                                         <div className="text-sm font-medium">${ Number(item.price).toLocaleString(undefined, {minimumFractionDigits: 2}) }</div>
                                     </div>
                                 </div>  
-                            </a>
+                            </Link>
                         </div> 
                         
                         ))

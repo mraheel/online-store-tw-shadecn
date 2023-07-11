@@ -1,17 +1,17 @@
-"use client";
-import { Provider } from "react-redux";
-import { Toaster } from 'react-hot-toast';
-import { store } from "@/store";
-import { SessionProvider } from "next-auth/react";
+"use client"
+import { SessionProvider } from "next-auth/react"
+import { Provider } from "react-redux"
+import { store } from "@/store"
+import { Toaster } from 'react-hot-toast'
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
-      <Provider store={store}>
-        <Toaster />
+      <Provider store={store}> 
         {children}
+        <Toaster />
       </Provider>
-    </SessionProvider>
+     </SessionProvider>
   )};
 
 export default Providers;
